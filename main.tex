@@ -95,11 +95,13 @@
 \section*{EXPERIENCE}
 
 \entry{UBS}{Hyderabad, India}
+{\small\textit{Python, FastAPI, PostgreSQL, OpenTelemetry, Prometheus, Grafana, GitLab CI, Azure}\par}
+\vspace{1pt}
 \subentry{Software Engineer}{Aug 2026 -- Present}
 {\small
 \begin{itemize}
-  \item Built frontend end-to-end test coverage for an internal sensitive-data document-scanning platform using \textbf{Playwright} across \textbf{15 critical flows}, wired into the team's CI pipeline.
-  \item On a new team, building automation for the end-to-end VM-provisioning process --- raising tickets, invoking Amelia automations, and calling internal server APIs to create machines. Provisioned the project's \textbf{Postgres} database and set up its test pipeline.
+  \item Built end-to-end test coverage for an internal sensitive-data document-scanning platform in \textbf{Playwright (TypeScript)} --- \textbf{15 critical flows} --- wired into the team's \textbf{GitLab CI} pipeline.
+  \item On a new team, building a first-iteration VM-provisioning automation (ticket creation, Amelia automations, internal server APIs), and provisioned its \textbf{Azure Postgres Flexible Server} database with role-based managed-identity access.
 \end{itemize}
 }
 
@@ -107,8 +109,8 @@
 \subentry{Software Engineering Intern}{Jan -- Jul 2026}
 {\small
 \begin{itemize}
-  \item Instrumented the document-scanning service (a platform handling $\sim$9{,}700 scans/month) using an OpenTelemetry-based internal library, and built the \textbf{Prometheus + Grafana} dashboard used to monitor it.
-  \item Built a remediation-notification service (internal Microsoft Teams bot wrapper + email API) that queries remediated findings and each user's last-notified state from the database and routes alerts to the correct owner.
+  \item Instrumented the document-scanning service (a platform handling $\sim$9{,}700 scans/month) with an \textbf{OpenTelemetry}-based internal library and built the \textbf{Prometheus + Grafana} dashboard used to monitor it.
+  \item Built the \textbf{Python} notification component for the platform: it reads remediated findings and each user's last-notified state from Postgres and triggers alerts through an internal email API.
 \end{itemize}
 }
 
