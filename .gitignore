@@ -1,0 +1,15 @@
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+
+# Submission build (contains phone number) -- never commit
+resume.pdf
+
+# local render previews
+preview*.png
+public-preview*.png
