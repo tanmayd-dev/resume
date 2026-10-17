@@ -10,6 +10,9 @@
 # Submission build (contains phone number) -- never commit
 resume.pdf
 
+# Real contact details -- never commit. Copy from phone.tex.example
+phone.tex
+
 # local render previews
 preview*.png
 public-preview*.png

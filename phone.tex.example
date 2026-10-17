@@ -1,0 +1,4 @@
+% Copy this file to phone.tex and put your real number in it.
+% phone.tex is gitignored, so the digits never enter the public repo.
+% The submission build (make) picks it up; the public build (make public) omits it.
+\newcommand{\contactphone}{+91~00000~00000}

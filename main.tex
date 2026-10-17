@@ -56,6 +56,10 @@
 \newif\ifpublic
 \ifdefined\PUBLICBUILD\publictrue\fi
 
+% The phone number lives in phone.tex, which is gitignored, so the digits never
+% enter this (public) repository. On a fresh clone, create it from phone.tex.example.
+\IfFileExists{phone.tex}{\input{phone.tex}}{\newcommand{\contactphone}{}}
+
 \begin{document}
 
 %================== HEADER ==================
@@ -63,7 +67,7 @@
 \vspace{3pt}
 {\small\color{muted}
   \faMapMarker~Hyderabad, India \;$\cdot$\; Open to relocation
-  \ifpublic\else\;$\cdot$\; \faPhone~+91~00000~00000\fi
+  \ifpublic\else\ifx\contactphone\empty\else\;$\cdot$\; \faPhone~\contactphone\fi\fi
   \;$\cdot$\; \faEnvelope~\href{mailto:work.tanmaydeshpande@gmail.com}{work.tanmaydeshpande@gmail.com}\par
   \vspace{1pt}
   \faGithub~\href{https://github.com/tanmayd-dev}{github.com/tanmayd-dev}
