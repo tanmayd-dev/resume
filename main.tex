@@ -79,8 +79,9 @@
 %================== SKILLS ==================
 \section*{SKILLS}
 {\small
+\settowidth{\dimen0}{\textbf{Backend \& Infra:}}
 \begin{description}[
-  leftmargin=7.4em, labelwidth=7.1em, labelsep=0.3em,
+  leftmargin=\dimexpr\dimen0+0.7em\relax, labelwidth=\dimen0, labelsep=0.7em,
   style=sameline, itemsep=0.8pt, topsep=0.4pt, parsep=0pt]
   \item[Languages:] Python, Go, TypeScript, SQL, Bash, Kotlin
   \item[AI \& LLM:] LangGraph, RAG (ChromaDB, HuggingFace embeddings), Transformers.js \& Whisper, LLM evaluation harnesses, OpenRouter / Ollama APIs
