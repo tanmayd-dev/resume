@@ -50,6 +50,7 @@
 \newcommand{\entry}[2]{\noindent\textbf{#1}\hfill{\color{muted}#2}\par}
 \newcommand{\subentry}[2]{\noindent\textit{#1}\hfill\textit{#2}\par}
 \newcommand{\projhead}[2]{\noindent\textbf{#1} --- #2\par}
+\newcommand{\repolink}[1]{\hfill{\color{muted}\href{https://github.com/tanmayd-dev/#1}{github.com/tanmayd-dev/#1}}}
 
 %---------- phone toggle ----------
 \newif\ifpublic
@@ -74,7 +75,7 @@
 
 %================== SUMMARY ==================
 \section*{SUMMARY}
-{\small Software engineer working across backend services and AI/LLM tooling, with production experience in observability and test automation at UBS and peer-reviewed research in applied optimisation.}
+{\small Backend and AI-infrastructure engineer --- distributed systems in Go, LLM evaluation tooling, and peer-reviewed research. Software engineer at UBS.}
 
 %================== SKILLS ==================
 \section*{SKILLS}
@@ -102,8 +103,7 @@
 \end{itemize}
 }
 
-\vspace{2pt}
-\entry{UBS}{Hyderabad, India}
+\vspace{3pt}
 \subentry{Software Engineering Intern}{Jan -- Jul 2026}
 {\small
 \begin{itemize}
@@ -124,7 +124,7 @@
 \section*{PROJECTS}
 
 \projhead{TaskTide}{Distributed workflow platform}
-{\small\textit{Go, PostgreSQL, MinIO/S3, React, Docker}}\\[1pt]
+{\small\textit{Go, PostgreSQL, MinIO/S3, React, Docker}\repolink{TaskTide}}\\[1pt]
 {\small
 \begin{itemize}
   \item DAG workflows designed in a drag-and-drop editor and executed across a self-registering worker fleet, with dependency-aware scheduling via topological sort and unblocked-task queries.
@@ -134,7 +134,7 @@
 
 \vspace{2pt}
 \projhead{brickbench}{LLM debloat-safety evaluation harness}
-{\small\textit{Python, SQLite, ADB / Android emulator}}\\[1pt]
+{\small\textit{Python, SQLite, ADB / Android emulator}\repolink{brickbench}}\\[1pt]
 {\small
 \begin{itemize}
   \item Applies LLM-proposed Android debloat plans to a booted emulator snapshot and verifies them with functional probes; results are \textbf{SHA-256} hashed for reproducibility.
@@ -144,7 +144,7 @@
 
 \vspace{2pt}
 \projhead{ai-workflow-platform}{Governed AI workflow platform}
-{\small\textit{FastAPI, LangGraph, ChromaDB, SQLAlchemy}}\\[1pt]
+{\small\textit{FastAPI, LangGraph, ChromaDB, SQLAlchemy}\repolink{ai-workflow-platform}}\\[1pt]
 {\small
 \begin{itemize}
   \item LLM-assisted workflow drafting over an uploaded regulatory knowledge base (RAG), with deterministic rules making the final decision and a replayable audit trail.
