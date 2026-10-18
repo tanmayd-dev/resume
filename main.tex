@@ -105,7 +105,7 @@
 {\small
 \begin{itemize}
   \item Built end-to-end test coverage for an internal sensitive-data document-scanning platform in \textbf{Playwright (TypeScript)} --- \textbf{15 critical flows} --- wired into the team's \textbf{GitLab CI} pipeline.
-  \item One of \textbf{5 instructors} for an internal \textbf{30-person AI bootcamp} for engineers moving into the AI domain --- teaching \textbf{FastAPI}, async database access, and \textbf{LangGraph}.
+  \item One of \textbf{5 instructors} for an internal \textbf{30-person AI bootcamp} for engineers moving into the AI domain --- teaching \textbf{FastAPI} and async database access.
   \item On a new team, building a first-iteration VM-provisioning automation (ticket creation, Amelia automations, internal server APIs), and provisioned its \textbf{Azure Postgres Flexible Server} database with role-based managed-identity access.
 \end{itemize}
 }
@@ -134,7 +134,7 @@
 {\small\textit{Go, PostgreSQL, MinIO/S3, React, Docker}\repolink{TaskTide}}\\[1pt]
 {\small
 \begin{itemize}
-  \item DAG workflows designed in a drag-and-drop editor and executed across a self-registering worker fleet, with dependency-aware scheduling via topological sort and unblocked-task queries.
+  \item Dependency-aware scheduling for DAG workflows --- tasks are released by topological sort and dispatched via unblocked-task queries to a worker fleet that self-registers over HTTP.
   \item Persists workflow/task state in Postgres (sqlc + goose migrations), passes task data as files through MinIO/S3, and deploys with a single Docker Compose command.
 \end{itemize}
 }
