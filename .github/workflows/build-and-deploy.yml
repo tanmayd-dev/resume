@@ -1,0 +1,79 @@
+name: Build public CV
+
+# Reproducible public build of resume-public.pdf.
+# The public branch of main.tex (\PUBLICBUILD) never reads phone.tex, so this
+# workflow works on a clean checkout with no private inputs present.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build resume-public.pdf
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XeLaTeX, Inter and FontAwesome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            texlive-xetex \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            fonts-inter \
+            fonts-font-awesome \
+            poppler-utils
+          xelatex --version
+          kpsewhich inter.sty fontawesome5.sty
+
+      - name: Build public PDF from a clean tree and assert no private inputs
+        run: make ci check-public
+
+      - name: Show staged artifact
+        run: |
+          find _site -type f -printf '%P  %s bytes\n'
+          pdftotext _site/resume-public.pdf - | head -15
+
+      - name: Upload resume-public.pdf artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-public
+          path: _site/resume-public.pdf
+          if-no-files-found: error
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

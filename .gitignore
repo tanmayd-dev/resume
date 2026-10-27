@@ -16,3 +16,6 @@ phone.tex
 # local render previews
 preview*.png
 public-preview*.png
+
+# staged public artifact (make check-public / CI Pages upload)
+_site/

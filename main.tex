@@ -58,7 +58,13 @@
 
 % The phone number lives in phone.tex, which is gitignored, so the digits never
 % enter this (public) repository. On a fresh clone, create it from phone.tex.example.
-\IfFileExists{phone.tex}{\input{phone.tex}}{\newcommand{\contactphone}{}}
+% The public build never reads phone.tex at all, so it works on a clean checkout
+% (and in CI) where the file does not exist.
+\ifpublic
+  \newcommand{\contactphone}{}
+\else
+  \IfFileExists{phone.tex}{\input{phone.tex}}{\newcommand{\contactphone}{}}
+\fi
 
 \begin{document}
 

@@ -5,7 +5,7 @@ SRC     := main.tex
 OUT     := resume.pdf
 OUT_PUB := resume-public.pdf
 
-.PHONY: all public watch open clean distclean
+.PHONY: all public ci check-public watch open clean distclean
 
 ## make            -> resume.pdf (submission build, includes phone number)
 all: $(OUT)
@@ -22,6 +22,18 @@ $(OUT_PUB): $(SRC)
 	$(ENGINE) $(FLAGS) -jobname=resume-public '\def\PUBLICBUILD{}\input{main.tex}'
 	$(ENGINE) $(FLAGS) -jobname=resume-public '\def\PUBLICBUILD{}\input{main.tex}'
 	@echo "BUILT: $(OUT_PUB)"
+
+## make ci         -> clean-room public build, exactly what CI runs.
+##                    Needs no phone.tex: the PUBLICBUILD branch never reads it.
+ci: distclean
+	@$(MAKE) public
+
+## make check-public -> build, stage into _site/, and assert nothing private leaked
+check-public: public
+	@rm -rf _site && mkdir -p _site
+	@cp $(OUT_PUB) _site/
+	@if [ -f site/index.html ]; then cp site/index.html _site/; fi
+	@scripts/check-no-private.sh _site
 
 ## make watch      -> rebuild on save (needs inotifywait, from inotify-tools)
 watch: $(SRC)
