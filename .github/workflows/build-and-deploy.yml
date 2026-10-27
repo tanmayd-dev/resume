@@ -77,3 +77,34 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+  sync-user-pages:
+    name: Sync resume.pdf to tanmayd-dev.github.io
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download built resume-public artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-public
+
+      - name: Setup SSH Deploy Key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.USER_PAGES_DEPLOY_KEY }}
+
+      - name: Push resume.pdf to tanmayd-dev.github.io
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git clone --depth 1 git@github.com:tanmayd-dev/tanmayd-dev.github.io.git /tmp/user-pages
+          cp resume-public.pdf /tmp/user-pages/resume.pdf
+          cd /tmp/user-pages
+          if git status --porcelain | grep -q "resume.pdf"; then
+            git add resume.pdf
+            git commit -m "ci(resume): auto-sync latest compiled resume.pdf"
+            git push origin main
+          else
+            echo "resume.pdf is identical; nothing to commit."
+          fi

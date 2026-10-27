@@ -2,7 +2,9 @@
 
 Source for my resume — plain LaTeX, compiled with **XeLaTeX**.
 
-📄 **[resume-public.pdf](resume-public.pdf)** — the public build (no phone number).
+- 🌐 **[Web Viewer](https://tanmayd-dev.github.io/resume/)**
+- 📄 **[Live PDF (tanmayd-dev.github.io/resume.pdf)](https://tanmayd-dev.github.io/resume.pdf)**
+- 📦 **[resume-public.pdf](resume-public.pdf)** — the repo public build artifact (no phone number).
 
 ## Build
 
